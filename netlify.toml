@@ -1,0 +1,122 @@
+# ============================================================
+# UNIFIED INVESTMENTS INC. — netlify.toml
+# Netlify Build & Deployment Configuration
+#
+# Docs: https://docs.netlify.com/configure-builds/file-based-configuration/
+# ============================================================
+
+# ---- Build Settings ----------------------------------------
+[build]
+  # No build command needed — this is a static HTML/CSS/JS site.
+  # Netlify will serve files directly from the root directory.
+  publish = "."
+
+  # If you later add a build step (e.g. Parcel, Vite, Webpack),
+  # update these two lines:
+  # command = "npm run build"
+  # publish = "dist"
+
+
+# ---- Environment Variables (build-time) --------------------
+# [build.environment]
+#   NODE_VERSION = "20"
+
+
+# ---- Netlify Forms -----------------------------------------
+# Netlify auto-detects the `data-netlify="true"` attribute on
+# the <form> in index.html. No additional config is required
+# here for form detection, but spam filtering is configured below.
+
+# Form submission notifications: configure in Netlify UI under
+# Site Settings → Forms → Form notifications, or add here:
+# [[plugins]]
+#   package = "@netlify/plugin-emails"
+
+
+# ---- Redirect Rules ----------------------------------------
+# 1. Redirect the post-form-submission action= target to a
+#    success page. The /success path does not need a real HTML
+#    file — Netlify will serve it via this rule if you create one,
+#    or you can create a success.html at the root level.
+[[redirects]]
+  from   = "/success"
+  to     = "/success.html"
+  status = 200
+  force  = false
+
+# 2. Force HTTPS on all requests (belt-and-suspenders; Netlify
+#    also enforces this at the CDN level when you enable SSL).
+[[redirects]]
+  from   = "http://unifiedinvestmentsinc.com/*"
+  to     = "https://unifiedinvestmentsinc.com/:splat"
+  status = 301
+  force  = true
+
+# 3. Redirect www → non-www (canonical domain preference).
+#    Update the domain below to your actual production domain.
+[[redirects]]
+  from   = "https://www.unifiedinvestmentsinc.com/*"
+  to     = "https://unifiedinvestmentsinc.com/:splat"
+  status = 301
+  force  = true
+
+# 4. Catch-all 404 — future pages not yet created will fall
+#    back to the homepage gracefully rather than throwing a
+#    raw Netlify 404. Remove or update when a 404.html is added.
+[[redirects]]
+  from   = "/*"
+  to     = "/index.html"
+  status = 200
+  force  = false
+
+
+# ---- HTTP Security Headers ---------------------------------
+# Applied globally to all responses served by Netlify's CDN.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # Prevent clickjacking
+    X-Frame-Options = "SAMEORIGIN"
+    # Block MIME-type sniffing
+    X-Content-Type-Options = "nosniff"
+    # Referrer policy
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    # XSS protection (legacy browsers)
+    X-XSS-Protection = "1; mode=block"
+    # Permissions policy (disable unneeded browser features)
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    # Content Security Policy
+    # IMPORTANT: If you add third-party scripts beyond Google Fonts
+    # and Font Awesome, you must add their domains to script-src here.
+    Content-Security-Policy = "default-src 'self'; style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; script-src 'self'; img-src 'self' data:; connect-src 'self'; form-action 'self';"
+
+
+# ---- Cache Headers for Static Assets ----------------------
+# Aggressive caching for versioned CSS/JS; short cache for HTML.
+
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+
+# ---- Plugin Configuration (optional future use) -----------
+# Uncomment to enable Netlify's Lighthouse performance auditing
+# plugin during CI/CD runs.
+# [[plugins]]
+#   package = "@netlify/plugin-lighthouse"
