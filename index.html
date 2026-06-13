@@ -1,316 +1,3279 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unified Investments | Real Estate Portfolio Management</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="css/styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Unified Investments Inc. — Professional property preservation and management maintenance serving Chicago &amp; Northwest Indiana. Winterizations, grass cuts, trashouts, roof repairs, HVAC, evictions, and more. 5+ years on PropertyVendors.com." />
+  <meta name="keywords" content="property preservation, property management, Chicago, Northwest Indiana, winterization, grass cuts, trashouts, roof repair, HVAC, evictions, make-ready" />
+  <meta name="author" content="Unified Investments Inc." />
+  <meta property="og:title" content="Unified Investments Inc. | Property Preservation &amp; Management" />
+  <meta property="og:description" content="Serving Chicago &amp; NW Indiana with professional property preservation services. 5+ years track record on PropertyVendors.com." />
+  <meta property="og:type" content="website" />
+  <title>Unified Investments Inc. | Property Preservation &amp; Management — Chicago &amp; NW Indiana</title>
+
+  <!-- Google Fonts: Montserrat + Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome 6.5.1 Free — integrity hash intentionally omitted for reliability -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+/* ============================================================
+   UNIFIED INVESTMENTS INC. — GLOBAL DESIGN SYSTEM
+   css/styles.css
+   
+   Architecture: Mobile-first, BEM-influenced, CSS custom 
+   properties for all tokens. Single stylesheet powers all 
+   pages. New pages simply link this file.
+   
+   Table of Contents:
+   1.  CSS Custom Properties (Design Tokens)
+   2.  CSS Reset & Base
+   3.  Typography System
+   4.  Layout Utilities
+   5.  Button Component System
+   6.  Navigation Component
+   7.  Mobile Drawer
+   8.  Hero Section
+   9.  Section Shared Styles
+   10. Services Grid
+   11. Service Area Section
+   12. Why Choose Us Section
+   13. Bid Request Form
+   14. Footer Component
+   15. Mobile Sticky CTA Bar
+   16. Utility Classes
+   17. Responsive Breakpoints
+   18. Accessibility & Reduced Motion
+============================================================ */
+
+
+/* ============================================================
+   1. CSS CUSTOM PROPERTIES (DESIGN TOKENS)
+   These tokens are the single source of truth for the entire
+   design system. Future pages inherit all of these.
+============================================================ */
+:root {
+  /* Brand Color Palette */
+  --primary:        #0B2B40;
+  --primary-dark:   #071E2E;
+  --primary-mid:    #0F3550;
+  --secondary:      #4A5D6B;
+  --secondary-light:#6B7E8C;
+  --accent:         #E8891F;
+  --accent-dark:    #C9720F;
+  --accent-light:   #F5A044;
+  --bg-main:        #F8F9FA;
+  --bg-section-alt: #EFF2F5;
+  --text-dark:      #2D3E50;
+  --text-body:      #3E5060;
+  --text-muted:     #6B7E8C;
+  --white:          #FFFFFF;
+  --border-light:   #DDE3E9;
+  --border-mid:     #C5CDD5;
+  --shadow-color:   rgba(11, 43, 64, 0.12);
+  --shadow-deep:    rgba(11, 43, 64, 0.22);
+
+  /* Typography Scale */
+  --font-heading:   'Montserrat', sans-serif;
+  --font-body:      'Inter', sans-serif;
+
+  --text-xs:    0.75rem;    /* 12px */
+  --text-sm:    0.875rem;   /* 14px */
+  --text-base:  1rem;       /* 16px */
+  --text-md:    1.125rem;   /* 18px */
+  --text-lg:    1.25rem;    /* 20px */
+  --text-xl:    1.5rem;     /* 24px */
+  --text-2xl:   1.875rem;   /* 30px */
+  --text-3xl:   2.25rem;    /* 36px */
+  --text-4xl:   3rem;       /* 48px */
+  --text-5xl:   3.75rem;    /* 60px */
+
+  /* Spacing Scale */
+  --space-1:    0.25rem;
+  --space-2:    0.5rem;
+  --space-3:    0.75rem;
+  --space-4:    1rem;
+  --space-5:    1.25rem;
+  --space-6:    1.5rem;
+  --space-8:    2rem;
+  --space-10:   2.5rem;
+  --space-12:   3rem;
+  --space-16:   4rem;
+  --space-20:   5rem;
+  --space-24:   6rem;
+  --space-32:   8rem;
+
+  /* Layout */
+  --container-max:  1280px;
+  --container-pad:  var(--space-6);
+  --nav-height:     72px;
+
+  /* Border Radius */
+  --radius-sm:  4px;
+  --radius-md:  8px;
+  --radius-lg:  12px;
+  --radius-xl:  20px;
+  --radius-full:9999px;
+
+  /* Elevation / Shadows */
+  --shadow-sm:   0 1px 3px var(--shadow-color), 0 1px 2px rgba(11,43,64,0.06);
+  --shadow-md:   0 4px 12px var(--shadow-color), 0 2px 4px rgba(11,43,64,0.08);
+  --shadow-lg:   0 10px 30px var(--shadow-color), 0 4px 10px rgba(11,43,64,0.08);
+  --shadow-xl:   0 20px 50px var(--shadow-deep), 0 8px 20px rgba(11,43,64,0.12);
+  --shadow-inset:inset 0 2px 6px rgba(11,43,64,0.08);
+
+  /* Transitions */
+  --transition-fast:   all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base:   all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow:   all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+/* ============================================================
+   2. CSS RESET & BASE
+============================================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: var(--nav-height);
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: 400;
+  line-height: 1.65;
+  color: var(--text-body);
+  background-color: var(--bg-main);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+img,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+input,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+address {
+  font-style: normal;
+}
+
+/* Focus visible ring — accessible keyboard navigation */
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+
+/* ============================================================
+   3. TYPOGRAPHY SYSTEM
+============================================================ */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  line-height: 1.2;
+  color: var(--text-dark);
+  letter-spacing: -0.02em;
+}
+
+h1 { font-size: var(--text-3xl); }
+h2 { font-size: var(--text-2xl); }
+h3 { font-size: var(--text-xl); }
+h4 { font-size: var(--text-lg); }
+h5 { font-size: var(--text-md); }
+h6 { font-size: var(--text-base); }
+
+p {
+  max-width: 70ch;
+  margin-bottom: var(--space-4);
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+strong {
+  font-weight: 700;
+}
+
+
+/* ============================================================
+   4. LAYOUT UTILITIES
+============================================================ */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-pad);
+  padding-right: var(--container-pad);
+}
+
+/* Section shared padding — used by all page sections */
+.section {
+  padding-top: var(--space-20);
+  padding-bottom: var(--space-20);
+}
+
+/* Alternating background sections */
+.section--alt {
+  background-color: var(--bg-section-alt);
+}
+
+/* Section Header Block — reusable across all pages */
+.section-header {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto var(--space-16) auto;
+}
+
+.section-eyebrow {
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: var(--space-3);
+}
+
+.section-eyebrow--light {
+  color: var(--accent-light);
+}
+
+.section-title {
+  font-family: var(--font-heading);
+  font-size: var(--text-3xl);
+  font-weight: 800;
+  color: var(--text-dark);
+  line-height: 1.15;
+  margin-bottom: var(--space-5);
+}
+
+.section-title--light {
+  color: var(--white);
+}
+
+.section-subtitle {
+  font-family: var(--font-body);
+  font-size: var(--text-md);
+  color: var(--text-muted);
+  line-height: 1.7;
+  max-width: 60ch;
+  margin: 0 auto;
+}
+
+
+/* ============================================================
+   5. BUTTON COMPONENT SYSTEM
+   Reusable across all pages
+============================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  font-family: var(--font-heading);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border: 2px solid transparent;
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-6);
+  cursor: pointer;
+  transition: var(--transition-base);
+  white-space: nowrap;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0);
+  transition: var(--transition-base);
+}
+
+.btn:hover::after {
+  background: rgba(255,255,255,0.08);
+}
+
+/* Primary Accent Button */
+.btn--accent {
+  background-color: var(--accent);
+  color: var(--white);
+  border-color: var(--accent);
+  box-shadow: 0 4px 14px rgba(232, 137, 31, 0.35);
+}
+
+.btn--accent:hover {
+  background-color: var(--accent-dark);
+  border-color: var(--accent-dark);
+  box-shadow: 0 6px 20px rgba(232, 137, 31, 0.45);
+  transform: translateY(-2px);
+}
+
+.btn--accent:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(232, 137, 31, 0.3);
+}
+
+/* Outline / Ghost Button */
+.btn--outline {
+  background-color: transparent;
+  color: var(--white);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.btn--outline:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: var(--white);
+  transform: translateY(-2px);
+}
+
+/* Outline Dark (for light backgrounds) */
+.btn--outline-dark {
+  background-color: transparent;
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+.btn--outline-dark:hover {
+  background-color: var(--primary);
+  color: var(--white);
+  transform: translateY(-2px);
+}
+
+/* Size Variants */
+.btn--sm {
+  font-size: var(--text-xs);
+  padding: var(--space-2) var(--space-4);
+}
+
+.btn--lg {
+  font-size: var(--text-base);
+  padding: var(--space-4) var(--space-8);
+  border-radius: var(--radius-lg);
+}
+
+
+/* ============================================================
+   6. NAVIGATION COMPONENT
+============================================================ */
+.site-header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 900;
+  background-color: var(--primary);
+  box-shadow: 0 2px 20px rgba(11, 43, 64, 0.3);
+  transition: var(--transition-base);
+}
+
+.site-header.scrolled {
+  background-color: var(--primary-dark);
+  box-shadow: 0 4px 30px rgba(11, 43, 64, 0.4);
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--nav-height);
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--container-pad);
+}
+
+/* Brand Logo/Name */
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.nav-brand__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+  border-radius: var(--radius-md);
+  color: var(--white);
+  font-size: var(--text-lg);
+  flex-shrink: 0;
+  transition: var(--transition-base);
+}
+
+.nav-brand:hover .nav-brand__icon {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(232, 137, 31, 0.4);
+}
+
+.nav-brand__text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.nav-brand__name {
+  font-family: var(--font-heading);
+  font-size: var(--text-base);
+  font-weight: 800;
+  color: var(--white);
+  letter-spacing: 0.01em;
+}
+
+.nav-brand__sub {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.02em;
+}
+
+/* Desktop Nav Links */
+.nav-links {
+  display: none;
+  align-items: center;
+  gap: var(--space-2);
+  list-style: none;
+}
+
+.nav-link {
+  font-family: var(--font-heading);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.8);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  transition: var(--transition-base);
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background-color: var(--accent);
+  border-radius: var(--radius-full);
+  transition: var(--transition-base);
+}
+
+.nav-link:hover {
+  color: var(--white);
+}
+
+.nav-link:hover::after {
+  width: calc(100% - var(--space-6));
+}
+
+.nav-cta {
+  margin-left: var(--space-4);
+}
+
+/* Burger Button */
+.nav-burger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  padding: var(--space-2);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  border-radius: var(--radius-md);
+  transition: var(--transition-base);
+}
+
+.nav-burger:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.nav-burger__line {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: var(--white);
+  border-radius: var(--radius-full);
+  transition: var(--transition-base);
+  transform-origin: center;
+}
+
+/* Burger → X animation */
+.nav-burger.is-open .nav-burger__line:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nav-burger.is-open .nav-burger__line:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.nav-burger.is-open .nav-burger__line:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+
+/* ============================================================
+   7. MOBILE DRAWER OVERLAY
+============================================================ */
+.mobile-drawer {
+  position: fixed;
+  inset: 0;
+  top: var(--nav-height);
+  background-color: var(--primary-dark);
+  z-index: 850;
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-8) var(--space-6);
+  transform: translateX(100%);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow-y: auto;
+}
+
+.mobile-drawer.is-open {
+  transform: translateX(0);
+}
+
+.mobile-drawer__links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  list-style: none;
+}
+
+.mobile-drawer__link {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.85);
+  padding: var(--space-4) var(--space-2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  text-decoration: none;
+  transition: var(--transition-base);
+  letter-spacing: -0.01em;
+}
+
+.mobile-drawer__link:hover {
+  color: var(--white);
+  padding-left: var(--space-4);
+}
+
+.mobile-drawer__cta {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin-top: var(--space-8);
+  font-size: var(--text-md);
+  padding: var(--space-5) var(--space-8);
+}
+
+/* Body scroll lock when drawer is open */
+body.drawer-open {
+  overflow: hidden;
+}
+
+/* Honeypot field — visually hidden from real users */
+.bid-form__honeypot {
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
+  opacity: 0;
+  pointer-events: none;
+  height: 0;
+  overflow: hidden;
+}
+
+
+/* ============================================================
+   8. HERO SECTION
+============================================================ */
+.hero {
+  position: relative;
+  background-color: var(--primary);
+  min-height: calc(100vh - var(--nav-height));
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding: var(--space-20) 0 var(--space-16) 0;
+}
+
+/* Geometric CSS accent overlays */
+.hero__geo {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero__geo--1 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(232, 137, 31, 0.08) 0%, transparent 70%);
+  top: -150px;
+  right: -100px;
+}
+
+.hero__geo--2 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
+  bottom: -100px;
+  left: -50px;
+}
+
+.hero__geo--3 {
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(232, 137, 31, 0.12) 0%, transparent 70%);
+  top: 40%;
+  left: 30%;
+}
+
+/* Subtle grid overlay pattern */
+.hero__grid-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.hero__content {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-12);
+  align-items: center;
+}
+
+.hero__text-block {
+  max-width: 680px;
+}
+
+/* Trust Badge */
+.trust-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: linear-gradient(135deg, rgba(232, 137, 31, 0.15), rgba(232, 137, 31, 0.08));
+  border: 1px solid rgba(232, 137, 31, 0.35);
+  border-radius: var(--radius-full);
+  padding: var(--space-2) var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.trust-badge__icon {
+  color: var(--accent);
+  font-size: var(--text-sm);
+}
+
+.trust-badge__text {
+  font-family: var(--font-heading);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.trust-badge__text strong {
+  color: var(--accent-light);
+}
+
+/* Hero Headline */
+.hero__headline {
+  font-family: var(--font-heading);
+  font-size: var(--text-3xl);
+  font-weight: 900;
+  color: var(--white);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin-bottom: var(--space-6);
+}
+
+.hero__headline--accent {
+  color: var(--accent);
+  display: block;
+}
+
+/* Hero Subheadline */
+.hero__subheadline {
+  font-family: var(--font-body);
+  font-size: var(--text-md);
+  font-weight: 400;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.72);
+  margin-bottom: var(--space-8);
+  max-width: 60ch;
+}
+
+/* Hero CTA Group */
+.hero__cta-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-bottom: var(--space-12);
+}
+
+/* Hero Stats */
+.hero__stats {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4);
+  padding-top: var(--space-8);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.hero__stat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.hero__stat-number {
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
+  font-weight: 900;
+  color: var(--accent);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.hero__stat-label {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.hero__stat-divider {
+  width: 1px;
+  height: 36px;
+  background-color: rgba(255, 255, 255, 0.12);
+  flex-shrink: 0;
+}
+
+/* Hero Visual Frame */
+.hero__visual {
+  display: none;
+}
+
+.hero__visual-frame {
+  position: relative;
+  background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8);
+  backdrop-filter: blur(4px);
+  box-shadow: var(--shadow-xl);
+}
+
+.hero__visual-icon-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+
+.hero__visual-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 72px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius-lg);
+  color: var(--secondary-light);
+  font-size: var(--text-xl);
+  transition: var(--transition-base);
+}
+
+.hero__visual-cell:hover {
+  background: rgba(232, 137, 31, 0.1);
+  border-color: rgba(232, 137, 31, 0.3);
+  color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.hero__visual-cell--large {
+  grid-column: span 2;
+  color: var(--accent);
+  font-size: var(--text-4xl);
+  height: 120px;
+  background: linear-gradient(135deg, rgba(232, 137, 31, 0.1), rgba(232, 137, 31, 0.04));
+  border-color: rgba(232, 137, 31, 0.2);
+}
+
+.hero__visual-label {
+  text-align: center;
+  font-family: var(--font-heading);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+}
+
+
+/* ============================================================
+   9. SECTION SHARED STYLES (already mostly in utilities)
+============================================================ */
+/* Section separator line utility */
+.section-rule {
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-light));
+  border-radius: var(--radius-full);
+  margin: var(--space-6) auto;
+}
+
+
+/* ============================================================
+   10. SERVICES GRID SECTION
+============================================================ */
+.services {
+  background-color: var(--bg-main);
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+
+/* Service Card */
+.service-card {
+  background-color: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  transition: var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--accent), var(--accent-dark));
+  border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+  opacity: 0;
+  transition: var(--transition-base);
+}
+
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px var(--shadow-color), 0 4px 12px rgba(11,43,64,0.08);
+  border-color: var(--border-mid);
+}
+
+.service-card:hover::before {
+  opacity: 1;
+}
+
+/* Icon Frame */
+.service-card__icon-frame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, rgba(232,137,31,0.12), rgba(232,137,31,0.06));
+  border: 1px solid rgba(232,137,31,0.2);
+  border-radius: var(--radius-lg);
+  color: var(--accent);
+  font-size: var(--text-xl);
+  flex-shrink: 0;
+  transition: var(--transition-base);
+}
+
+.service-card:hover .service-card__icon-frame {
+  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+  color: var(--white);
+  border-color: transparent;
+  box-shadow: 0 6px 16px rgba(232,137,31,0.35);
+}
+
+.service-card__title {
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  font-weight: 800;
+  color: var(--text-dark);
+  letter-spacing: -0.02em;
+}
+
+.service-card__desc {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  line-height: 1.75;
+  flex-grow: 1;
+  max-width: none;
+  margin-bottom: 0;
+}
+
+.service-card__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-heading);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-top: auto;
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--border-light);
+}
+
+
+/* ============================================================
+   11. SERVICE AREA SECTION
+============================================================ */
+.service-area {
+  background: linear-gradient(160deg, var(--primary) 0%, var(--primary-mid) 60%, #0D3050 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.service-area::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+}
+
+.service-area__grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-12);
+  align-items: start;
+}
+
+.service-area__body {
+  font-family: var(--font-body);
+  font-size: var(--text-md);
+  color: rgba(255,255,255,0.72);
+  line-height: 1.75;
+  margin-bottom: var(--space-5);
+  max-width: 56ch;
+}
+
+.service-area__cta-row {
+  margin-top: var(--space-6);
+}
+
+/* Coverage Panel */
+.coverage-panel {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+}
+
+.coverage-panel__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  background: linear-gradient(90deg, rgba(232,137,31,0.2), rgba(232,137,31,0.08));
+  border-bottom: 1px solid rgba(232,137,31,0.2);
+  padding: var(--space-4) var(--space-6);
+  font-family: var(--font-heading);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent-light);
+}
+
+.coverage-panel__state {
+  padding: var(--space-6);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.coverage-panel__state:last-of-type {
+  border-bottom: none;
+}
+
+.coverage-panel__state-name {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-heading);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: var(--space-4);
+}
+
+.coverage-panel__state-name i {
+  color: var(--accent);
+  font-size: var(--text-xs);
+}
+
+.coverage-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  list-style: none;
+}
+
+.coverage-list__item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: rgba(255,255,255,0.75);
+  line-height: 1.5;
+}
+
+.coverage-list__item i {
+  color: var(--accent);
+  font-size: var(--text-sm);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.coverage-list__item strong {
+  color: var(--white);
+}
+
+.coverage-panel__footer {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-6);
+  background: rgba(255,255,255,0.03);
+  border-top: 1px solid rgba(255,255,255,0.06);
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  color: rgba(255,255,255,0.4);
+  font-style: italic;
+}
+
+.coverage-panel__footer i {
+  color: var(--secondary-light);
+  flex-shrink: 0;
+}
+
+
+/* ============================================================
+   12. WHY CHOOSE US SECTION
+============================================================ */
+.why-us {
+  background-color: var(--bg-section-alt);
+}
+
+.why-us__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+}
+
+/* Why Card */
+.why-card {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-5);
+  background-color: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  transition: var(--transition-base);
+}
+
+.why-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(232, 137, 31, 0.2);
+}
+
+.why-card__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-mid));
+  border-radius: var(--radius-lg);
+  color: var(--accent);
+  font-size: var(--text-xl);
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(11,43,64,0.25);
+  transition: var(--transition-base);
+}
+
+.why-card:hover .why-card__icon {
+  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+  color: var(--white);
+  box-shadow: 0 6px 16px rgba(232,137,31,0.35);
+}
+
+.why-card__body {
+  flex: 1;
+}
+
+.why-card__title {
+  font-family: var(--font-heading);
+  font-size: var(--text-md);
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: var(--space-2);
+  letter-spacing: -0.01em;
+}
+
+.why-card__desc {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 0;
+  max-width: none;
+}
+
+
+/* ============================================================
+   13. BID REQUEST FORM
+============================================================ */
+.bid-section {
+  background: linear-gradient(160deg, var(--primary-dark) 0%, var(--primary) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.bid-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+}
+
+.bid-section__grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-12);
+  align-items: start;
+}
+
+.bid-section__body {
+  font-family: var(--font-body);
+  font-size: var(--text-md);
+  color: rgba(255,255,255,0.72);
+  line-height: 1.75;
+  margin-bottom: var(--space-8);
+  max-width: 52ch;
+}
+
+.bid-section__promises {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  list-style: none;
+}
+
+.bid-section__promises li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: rgba(255,255,255,0.8);
+  font-weight: 500;
+}
+
+.bid-section__promises li i {
+  color: var(--accent);
+  font-size: var(--text-base);
+  flex-shrink: 0;
+}
+
+/* Form Panel */
+.bid-section__form-panel {
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8);
+  box-shadow: var(--shadow-xl);
+}
+
+/* Form */
+.bid-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.bid-form__row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
+}
+
+.bid-form__group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.bid-form__group--full {
+  grid-column: 1 / -1;
+}
+
+.bid-form__label {
+  font-family: var(--font-heading);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-dark);
+}
+
+.bid-form__required {
+  color: var(--accent);
+  margin-left: 2px;
+}
+
+.bid-form__input {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--text-dark);
+  background-color: var(--bg-main);
+  border: 1.5px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-4);
+  transition: var(--transition-base);
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.bid-form__input:hover {
+  border-color: var(--border-mid);
+  background-color: var(--white);
+}
+
+.bid-form__input:focus {
+  outline: none;
+  border-color: var(--accent);
+  background-color: var(--white);
+  box-shadow: 0 0 0 3px rgba(232, 137, 31, 0.15);
+}
+
+.bid-form__input.has-error {
+  border-color: #DC2626;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.12);
+}
+
+.bid-form__input::placeholder {
+  color: var(--text-muted);
+  opacity: 0.6;
+}
+
+/* Select wrapper for custom arrow */
+.bid-form__select-wrapper {
+  position: relative;
+}
+
+.bid-form__select {
+  cursor: pointer;
+  padding-right: var(--space-10);
+}
+
+.bid-form__select-icon {
+  position: absolute;
+  right: var(--space-4);
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  font-size: var(--text-xs);
+  pointer-events: none;
+  transition: var(--transition-base);
+}
+
+.bid-form__select-wrapper:focus-within .bid-form__select-icon {
+  color: var(--accent);
+  transform: translateY(-50%) rotate(180deg);
+}
+
+/* Textarea */
+.bid-form__textarea {
+  resize: vertical;
+  min-height: 130px;
+}
+
+/* Validation error message */
+.bid-form__error {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  color: #DC2626;
+  font-weight: 500;
+  display: none;
+}
+
+.bid-form__error.is-visible {
+  display: block;
+}
+
+/* Submit row */
+.bid-form__submit-row {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-4);
+  padding-top: var(--space-2);
+}
+
+.bid-form__submit {
+  width: 100%;
+  justify-content: center;
+  padding-top: var(--space-4);
+  padding-bottom: var(--space-4);
+  font-size: var(--text-md);
+}
+
+.bid-form__disclaimer {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  margin-bottom: 0;
+  max-width: none;
+}
+
+.bid-form__disclaimer i {
+  color: var(--secondary);
+  flex-shrink: 0;
+}
+
+
+/* ============================================================
+   14. FOOTER COMPONENT
+============================================================ */
+.site-footer {
+  background: var(--primary-dark);
+  padding-top: var(--space-20);
+  padding-bottom: var(--space-8);
+  position: relative;
+}
+
+.site-footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-light), var(--accent));
+}
+
+.footer__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-10);
+  padding-bottom: var(--space-12);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  margin-bottom: var(--space-8);
+}
+
+/* Brand Column */
+.footer__col--brand {
+  max-width: 320px;
+}
+
+.footer__brand-link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  text-decoration: none;
+  margin-bottom: var(--space-4);
+}
+
+.footer__brand-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+  border-radius: var(--radius-md);
+  color: var(--white);
+  font-size: var(--text-lg);
+  flex-shrink: 0;
+}
+
+.footer__brand-name {
+  font-family: var(--font-heading);
+  font-size: var(--text-base);
+  font-weight: 800;
+  color: var(--white);
+  letter-spacing: 0.01em;
+}
+
+.footer__tagline {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: rgba(255,255,255,0.5);
+  line-height: 1.6;
+  margin-bottom: var(--space-5);
+  max-width: none;
+}
+
+.footer__address {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: rgba(255,255,255,0.45);
+  line-height: 1.7;
+  margin-bottom: var(--space-5);
+}
+
+.footer__address p {
+  margin-bottom: 0;
+  max-width: none;
+}
+
+.footer__trust-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: rgba(232,137,31,0.1);
+  border: 1px solid rgba(232,137,31,0.2);
+  border-radius: var(--radius-full);
+  padding: var(--space-2) var(--space-4);
+  font-family: var(--font-heading);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--accent-light);
+  letter-spacing: 0.04em;
+}
+
+.footer__trust-badge i {
+  color: var(--accent);
+}
+
+/* Footer Columns */
+.footer__col-heading {
+  font-family: var(--font-heading);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: var(--space-5);
+}
+
+.footer__links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  list-style: none;
+}
+
+.footer__link {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+  transition: var(--transition-base);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.footer__link:hover {
+  color: var(--accent-light);
+  padding-left: var(--space-1);
+}
+
+/* Contact list */
+.footer__contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  list-style: none;
+  margin-bottom: var(--space-6);
+}
+
+.footer__contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: rgba(255,255,255,0.6);
+  line-height: 1.6;
+}
+
+.footer__contact-item i {
+  color: var(--accent);
+  font-size: var(--text-base);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.footer__form-cta {
+  display: inline-flex;
+  width: 100%;
+  justify-content: center;
+}
+
+/* Footer Bottom */
+.footer__bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  text-align: center;
+}
+
+.footer__copyright {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  color: rgba(255,255,255,0.3);
+  margin-bottom: 0;
+  max-width: none;
+  line-height: 1.6;
+}
+
+.footer__back-top {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-heading);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  text-decoration: none;
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-full);
+  transition: var(--transition-base);
+}
+
+.footer__back-top:hover {
+  color: var(--accent-light);
+  border-color: rgba(232,137,31,0.3);
+  background: rgba(232,137,31,0.08);
+  transform: translateY(-2px);
+}
+
+.footer__back-top i {
+  transition: var(--transition-base);
+}
+
+.footer__back-top:hover i {
+  transform: translateY(-2px);
+}
+
+
+/* ============================================================
+   15. MOBILE STICKY CTA BAR
+============================================================ */
+.mobile-sticky-bar {
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 800;
+  background-color: var(--primary-dark);
+  border-top: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 -4px 20px rgba(11,43,64,0.4);
+  transform: translateY(100%);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobile-sticky-bar.is-visible {
+  transform: translateY(0);
+}
+
+.mobile-sticky-bar__btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  padding: var(--space-3) var(--space-4);
+  font-family: var(--font-heading);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: var(--transition-base);
+}
+
+.mobile-sticky-bar__btn i {
+  font-size: var(--text-lg);
+}
+
+.mobile-sticky-bar__btn--call {
+  background-color: var(--primary);
+  color: rgba(255,255,255,0.9);
+  border-right: 1px solid rgba(255,255,255,0.08);
+}
+
+.mobile-sticky-bar__btn--call:hover {
+  background-color: var(--primary-mid);
+  color: var(--white);
+}
+
+.mobile-sticky-bar__btn--bid {
+  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+  color: var(--white);
+}
+
+.mobile-sticky-bar__btn--bid:hover {
+  background: linear-gradient(135deg, var(--accent-light), var(--accent));
+}
+
+/* Safe-area padding for iOS notch */
+.mobile-sticky-bar {
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+
+/* ============================================================
+   16. UTILITY CLASSES
+============================================================ */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.text-center { text-align: center; }
+.text-left   { text-align: left; }
+.text-right  { text-align: right; }
+
+.mt-auto  { margin-top: auto; }
+.mb-0     { margin-bottom: 0; }
+.hidden   { display: none; }
+
+
+/* ============================================================
+   17. RESPONSIVE BREAKPOINTS
+   Mobile-first: base = mobile, then scale up
+============================================================ */
+
+/* Small Tablets → 480px */
+@media (min-width: 480px) {
+  .hero__headline {
+    font-size: var(--text-4xl);
+  }
+
+  .bid-form__submit {
+    width: auto;
+  }
+
+  .footer__bottom {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+}
+
+/* Tablets → 640px */
+@media (min-width: 640px) {
+  :root {
+    --container-pad: var(--space-8);
+  }
+
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .why-us__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .bid-form__row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footer__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Tablets Landscape → 768px */
+@media (min-width: 768px) {
+  .section {
+    padding-top: var(--space-24);
+    padding-bottom: var(--space-24);
+  }
+
+  h1 { font-size: var(--text-4xl); }
+  h2 { font-size: var(--text-3xl); }
+  h3 { font-size: var(--text-2xl); }
+
+  .hero__headline {
+    font-size: var(--text-5xl);
+  }
+
+  .section-title {
+    font-size: var(--text-4xl);
+  }
+
+  .section-subtitle {
+    font-size: var(--text-lg);
+  }
+
+  .hero__stats {
+    flex-wrap: nowrap;
+  }
+
+  .hero__stat-number {
+    font-size: var(--text-3xl);
+  }
+
+  /* Show desktop nav, hide burger on md+ */
+  .nav-links {
+    display: flex;
+  }
+
+  .nav-burger {
+    display: none;
+  }
+
+  /* Hide mobile sticky bar on tablet+ */
+  .mobile-sticky-bar {
+    display: none !important;
+  }
+
+  .service-area__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-16);
+  }
+
+  .bid-section__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-16);
+    align-items: start;
+  }
+
+  .bid-section__context {
+    position: sticky;
+    top: calc(var(--nav-height) + var(--space-8));
+  }
+
+  .bid-form__submit {
+    width: auto;
+  }
+}
+
+/* Desktop → 1024px */
+@media (min-width: 1024px) {
+  :root {
+    --container-pad: var(--space-10);
+  }
+
+  .hero__content {
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: var(--space-16);
+  }
+
+  .hero__visual {
+    display: block;
+  }
+
+  .services-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .why-us__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-5);
+  }
+
+  .footer__grid {
+    grid-template-columns: 1.6fr 1fr 1fr 1.2fr;
+    gap: var(--space-8);
+  }
+
+  .footer__form-cta {
+    width: auto;
+  }
+}
+
+/* Large Desktop → 1280px */
+@media (min-width: 1280px) {
+  .hero__headline {
+    font-size: clamp(2.8rem, 4vw, 4rem);
+  }
+
+  .section-title {
+    font-size: clamp(2rem, 3vw, 2.8rem);
+  }
+}
+
+/* 4K / Ultra-wide → 1920px+ */
+@media (min-width: 1920px) {
+  :root {
+    --container-max: 1440px;
+  }
+}
+
+
+/* ============================================================
+   18. ACCESSIBILITY & REDUCED MOTION
+============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .service-card {
+    border-color: var(--text-dark);
+  }
+
+  .bid-form__input {
+    border-color: var(--text-dark);
+  }
+
+  .nav-link {
+    color: var(--white);
+  }
+}
+
+/* Print styles */
+@media print {
+  .site-header,
+  .mobile-sticky-bar,
+  .mobile-drawer,
+  .hero__geo,
+  .hero__grid-overlay {
+    display: none;
+  }
+
+  body {
+    background: white;
+    color: black;
+  }
+}
+
+  </style>
 </head>
 <body>
-    <div class="top-bar">
-        <div class="top-bar-container">
-            <div class="top-bar-contact">
-                <span><i class="fas fa-phone-alt"></i> (312) 555-0190</span>
-                <span><i class="fas fa-envelope"></i> info@innovatepm-solutions.com</span>
-            </div>
-            <div class="top-bar-social">
-                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-            </div>
-        </div>
-    </div>
 
-    <header class="main-header">
-        <div class="header-container">
-            <a href="#" class="logo">
-                <span class="logo-accent">Unified</span>Investments
+
+  <!-- ============================================================
+       NAVIGATION
+  ============================================================ -->
+  <header class="site-header" id="site-header" role="banner">
+    <nav class="nav-container" aria-label="Primary navigation">
+      <a href="index.html" class="nav-brand" aria-label="Unified Investments Inc. – Home">
+        <span class="nav-brand__icon" aria-hidden="true"><i class="fa-solid fa-building-columns"></i></span>
+        <span class="nav-brand__text">
+          <span class="nav-brand__name">Unified Investments</span>
+          <span class="nav-brand__sub">Property Preservation Inc.</span>
+        </span>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <ul class="nav-links" role="list">
+        <li><a href="#services" class="nav-link">Services</a></li>
+        <li><a href="#service-area" class="nav-link">Service Area</a></li>
+        <li><a href="#why-us" class="nav-link">Why Choose Us</a></li>
+        <!-- Structural anchors for future pages -->
+        <!-- <li><a href="about.html" class="nav-link">About</a></li> -->
+        <!-- <li><a href="gallery.html" class="nav-link">Gallery</a></li> -->
+        <!-- <li><a href="portfolio.html" class="nav-link">Portfolio</a></li> -->
+        <li>
+          <a href="#bid-form" class="btn btn--accent btn--sm nav-cta">
+            <i class="fa-solid fa-file-contract" aria-hidden="true"></i>
+            Request a Bid
+          </a>
+        </li>
+      </ul>
+
+      <!-- Mobile Burger Toggle -->
+      <button
+        class="nav-burger"
+        id="nav-burger"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="mobile-drawer"
+        type="button"
+      >
+        <span class="nav-burger__line"></span>
+        <span class="nav-burger__line"></span>
+        <span class="nav-burger__line"></span>
+      </button>
+    </nav>
+
+    <!-- Mobile Drawer Overlay -->
+    <div class="mobile-drawer" id="mobile-drawer" aria-hidden="true" role="dialog" aria-label="Mobile navigation">
+      <nav aria-label="Mobile navigation links">
+        <ul class="mobile-drawer__links" role="list">
+          <li><a href="#services" class="mobile-drawer__link" data-drawer-close>Services</a></li>
+          <li><a href="#service-area" class="mobile-drawer__link" data-drawer-close>Service Area</a></li>
+          <li><a href="#why-us" class="mobile-drawer__link" data-drawer-close>Why Choose Us</a></li>
+          <!-- Future page links (uncomment when pages go live) -->
+          <!-- <li><a href="about.html" class="mobile-drawer__link">About</a></li> -->
+          <!-- <li><a href="gallery.html" class="mobile-drawer__link">Gallery</a></li> -->
+          <!-- <li><a href="portfolio.html" class="mobile-drawer__link">Portfolio</a></li> -->
+          <li>
+            <a href="#bid-form" class="btn btn--accent mobile-drawer__cta" data-drawer-close>
+              <i class="fa-solid fa-file-contract" aria-hidden="true"></i>
+              Request a Bid
             </a>
-            
-            <button class="mobile-nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
-                <span class="hamburger"></span>
-            </button>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="#hero" class="nav-link active">Home</a></li>
-                    <li><a href="#about" class="nav-link">About Us</a></li>
-                    <li><a href="#strategy" class="nav-link">Our Strategy</a></li>
-                    <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
-                    <li><a href="#contact" class="btn btn-primary nav-btn">Get In Touch</a></li>
+  <main id="main-content">
+
+    <!-- ============================================================
+         HERO SECTION
+    ============================================================ -->
+    <section class="hero" id="hero" aria-labelledby="hero-headline">
+      <!-- Geometric background accents (CSS-driven, no images) -->
+      <div class="hero__geo hero__geo--1" aria-hidden="true"></div>
+      <div class="hero__geo hero__geo--2" aria-hidden="true"></div>
+      <div class="hero__geo hero__geo--3" aria-hidden="true"></div>
+      <div class="hero__grid-overlay" aria-hidden="true"></div>
+
+      <div class="container hero__content">
+        <div class="hero__text-block">
+          <!-- Trust Badge -->
+          <div class="trust-badge" role="img" aria-label="5 plus years track record on PropertyVendors.com">
+            <span class="trust-badge__icon" aria-hidden="true"><i class="fa-solid fa-shield-halved"></i></span>
+            <span class="trust-badge__text">5+ Years Track Record on <strong>PropertyVendors.com</strong></span>
+          </div>
+
+          <h1 class="hero__headline" id="hero-headline">
+            Property Preservation &amp; Management Maintenance —
+            <span class="hero__headline--accent">Chicago &amp; NW Indiana</span>
+          </h1>
+
+          <p class="hero__subheadline">
+            Unified Investments delivers fully mobilized, field-ready property preservation teams across Cook, DuPage, Will, Lake, Porter, and LaPorte counties. With rapid deployment infrastructure, photo-documented compliance reporting, and open capacity for new regional vendor partnerships — we are the operational backbone your asset management program demands.
+          </p>
+
+          <div class="hero__cta-group">
+            <a href="#bid-form" class="btn btn--accent btn--lg">
+              <i class="fa-solid fa-file-signature" aria-hidden="true"></i>
+              Request Immediate Bid
+            </a>
+            <a href="#services" class="btn btn--outline btn--lg">
+              <i class="fa-solid fa-list-check" aria-hidden="true"></i>
+              Our Services
+            </a>
+          </div>
+
+          <!-- Hero Stats Strip -->
+          <div class="hero__stats" role="list" aria-label="Company highlights">
+            <div class="hero__stat" role="listitem">
+              <span class="hero__stat-number">8+</span>
+              <span class="hero__stat-label">Core Services</span>
+            </div>
+            <div class="hero__stat-divider" aria-hidden="true"></div>
+            <div class="hero__stat" role="listitem">
+              <span class="hero__stat-number">6</span>
+              <span class="hero__stat-label">Counties Covered</span>
+            </div>
+            <div class="hero__stat-divider" aria-hidden="true"></div>
+            <div class="hero__stat" role="listitem">
+              <span class="hero__stat-number">5+</span>
+              <span class="hero__stat-label">Years in Field</span>
+            </div>
+            <div class="hero__stat-divider" aria-hidden="true"></div>
+            <div class="hero__stat" role="listitem">
+              <span class="hero__stat-number">24/7</span>
+              <span class="hero__stat-label">Emergency Response</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Visual Frame -->
+        <div class="hero__visual" aria-hidden="true">
+          <div class="hero__visual-frame">
+            <div class="hero__visual-icon-grid">
+              <div class="hero__visual-cell hero__visual-cell--large">
+                <i class="fa-solid fa-city"></i>
+              </div>
+              <div class="hero__visual-cell">
+                <i class="fa-solid fa-hard-hat"></i>
+              </div>
+              <div class="hero__visual-cell">
+                <i class="fa-solid fa-snowflake"></i>
+              </div>
+              <div class="hero__visual-cell">
+                <i class="fa-solid fa-leaf"></i>
+              </div>
+              <div class="hero__visual-cell">
+                <i class="fa-solid fa-bolt"></i>
+              </div>
+              <div class="hero__visual-cell">
+                <i class="fa-solid fa-wrench"></i>
+              </div>
+            </div>
+            <div class="hero__visual-label">Unified Field Operations</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SERVICES GRID
+    ============================================================ -->
+    <section class="section services" id="services" aria-labelledby="services-heading">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">What We Do</span>
+          <h2 class="section-title" id="services-heading">Comprehensive Field Services</h2>
+          <p class="section-subtitle">
+            From emergency winterizations to full make-ready turnovers, our certified field crews handle every phase of the property preservation lifecycle — all under one vendor relationship.
+          </p>
+        </div>
+
+        <div class="services-grid" role="list">
+
+          <!-- Service Card 1: Winterizations -->
+          <article class="service-card" role="listitem" aria-labelledby="svc-winterization">
+            <div class="service-card__icon-frame" aria-hidden="true">
+              <i class="fa-solid fa-snowflake"></i>
+            </div>
+            <h3 class="service-card__title" id="svc-winterization">Winterizations</h3>
+            <p class="service-card__desc">
+              Full HUD/FHA-compliant winterization protocols including anti-freeze treatment of all water supply and drain lines, water heater draining, shut-off valve activation, and pressure testing. We issue photographic proof-of-completion packets for every asset on submission day.
+            </p>
+            <div class="service-card__tag" aria-hidden="true">
+              <i class="fa-solid fa-circle-check"></i> Compliance Ready
+            </div>
+          </article>
+
+          <!-- Service Card 2: Grass Cuts -->
+          <article class="service-card" role="listitem" aria-labelledby="svc-grass">
+            <div class="service-card__icon-frame" aria-hidden="true">
+              <i class="fa-solid fa-seedling"></i>
+            </div>
+            <h3 class="service-card__title" id="svc-grass">Grass Cuts</h3>
+            <p class="service-card__desc">
+              Recurring lawn maintenance across REO, occupied, and vacant properties. Services include front/rear mowing, edging, trimming, debris bag-out, and before/after photographic documentation submitted directly to your work order platform within 24 hours of completion.
+            </p>
+            <div class="service-card__tag" aria-hidden="true">
+              <i class="fa-solid fa-circle-check"></i> Recurring Programs Available
+            </div>
+          </article>
+
+          <!-- Service Card 3: Trashouts -->
+          <article class="service-card" role="listitem" aria-labelledby="svc-trashout">
+            <div class="service-card__icon-frame" aria-hidden="true">
+              <i class="fa-solid fa-trash-can"></i>
+            </div>
+            <h3 class="service-card__title" id="svc-trashout">Trashouts</h3>
+            <p class="service-card__desc">
+              Full interior and exterior debris removal operations. Our crews perform complete room-by-room cleanouts, furniture and appliance haul-away, yard debris clearing, and licensed disposal at certified transfer stations. Cubic yardage estimates provided upfront for accurate billing.
+            </p>
+            <div class="service-card__tag" aria-hidden="true">
+              <i class="fa-solid fa-circle-check"></i> Licensed Disposal
+            </div>
+          </article>
+
+          <!-- Service Card 4: Roof Repairs -->
+          <article class="service-card" role="listitem" aria-labelledby="svc-roof">
+            <div class="service-card__icon-frame" aria-hidden="true">
+              <i class="fa-solid fa-house-chimney"></i>
+            </div>
+            <h3 class="service-card__title" id="svc-roof">Roof Repairs</h3>
+            <p class="service-card__desc">
+              Emergency tarping, shingle replacement, flashing repair, soffit and fascia restoration, and gutter reattachment. Every roof assignment is assessed with drone-assisted or manual inspection, and we deliver a detailed repair scope with photo evidence prior to work order authorization.
+            </p>
+            <div class="service-card__tag" aria-hidden="true">
+              <i class="fa-solid fa-circle-check"></i> Inspection Reports Included
+            </div>
+          </article>
+
+          <!-- Service Card 5: Low-Voltage Electrical -->
+          <article class="service-card" role="listitem" aria-labelledby="svc-electrical">
+            <div class="service-card__icon-frame" aria-hidden="true">
+              <i class="fa-solid fa-bolt"></i>
+            </div>
+            <h3 class="service-card__title" id="svc-electrical">Low-Voltage Electrical</h3>
+            <p class="service-card__desc">
+              Maintenance-level electrical servicing including outlet/switch replacement, GFCI installation, circuit breaker resets, smoke and CO detector installation, doorbell systems, exterior security lighting, and panel labeling for REO compliance audits. All work performed under applicable local ordinance thresholds.
+            </p>
+            <div class="service-card__tag" aria-hidden="true">
+              <i class="fa-solid fa-circle-check"></i> Code Compliant
+            </div>
+          </article>
+
+          <!-- Service Card 6: HVAC -->
+          <article class="service-card" role="listitem" aria-labelledby="svc-hvac">
+            <div class="service-card__icon-frame" aria-hidden="true">
+              <i class="fa-solid fa-temperature-half"></i>
+            </div>
+            <h3 class="service-card__title" id="svc-hvac">HVAC</h3>
+            <p class="service-card__desc">
+              Furnace and central air unit inspections, filter replacements, condensate line clearing, thermostat commissioning, and heat-season operability certification. We identify and document deferred maintenance items and provide competitive repair bids for serviceable vs. replace-level equipment assessments.
+            </p>
+            <div class="service-card__tag" aria-hidden="true">
+              <i class="fa-solid fa-circle-check"></i> Operability Certified
+            </div>
+          </article>
+
+          <!-- Service Card 7: Evictions -->
+          <article class="service-card" role="listitem" aria-labelledby="svc-evictions">
+            <div class="service-card__icon-frame" aria-hidden="true">
+              <i class="fa-solid fa-gavel"></i>
+            </div>
+            <h3 class="service-card__title" id="svc-evictions">Eviction Services</h3>
+            <p class="service-card__desc">
+              Coordinated lock-out support in conjunction with court-ordered eviction enforcement. Our field teams stand by for same-day deployment alongside sheriff deputies, perform immediate post-eviction property securing (re-key, board-up as needed), and execute a full condition report at time of possession.
+            </p>
+            <div class="service-card__tag" aria-hidden="true">
+              <i class="fa-solid fa-circle-check"></i> Same-Day Mobilization
+            </div>
+          </article>
+
+          <!-- Service Card 8: Initial / Make-Ready -->
+          <article class="service-card" role="listitem" aria-labelledby="svc-makeready">
+            <div class="service-card__icon-frame" aria-hidden="true">
+              <i class="fa-solid fa-clipboard-list"></i>
+            </div>
+            <h3 class="service-card__title" id="svc-makeready">Initial / Make-Ready</h3>
+            <p class="service-card__desc">
+              End-to-end property condition assessments and turn-key make-ready preparation. Services include initial inspection reports with photographic inventories, interior cleaning, re-keying, paint touch-up, minor drywall repair, and final punch-list verification — delivering investor-grade asset readiness on your timeline.
+            </p>
+            <div class="service-card__tag" aria-hidden="true">
+              <i class="fa-solid fa-circle-check"></i> Full Turn-Key Available
+            </div>
+          </article>
+
+        </div><!-- /.services-grid -->
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SERVICE AREA
+    ============================================================ -->
+    <section class="section service-area" id="service-area" aria-labelledby="service-area-heading">
+      <div class="container">
+        <div class="service-area__grid">
+
+          <!-- Left: Positioning copy -->
+          <div class="service-area__content">
+            <span class="section-eyebrow section-eyebrow--light">Coverage Zone</span>
+            <h2 class="section-title section-title--light" id="service-area-heading">
+              Rapid Mobilization Across Chicagoland &amp; NW Indiana
+            </h2>
+            <p class="service-area__body">
+              Unified Investments operates with a centrally staged field infrastructure, allowing us to deploy crews to virtually any Greater Chicago metro or Northwest Indiana address within hours — not days. Our routing and dispatch systems are optimized for multi-property runs across adjacent counties, making us an operationally efficient partner for asset managers working high-volume REO pipelines.
+            </p>
+            <p class="service-area__body">
+              We are actively seeking new national servicer vendor relationships, regional asset management partnerships, and direct investor accounts. If you manage a portfolio of vacant or distressed properties across our coverage footprint, we have the bench strength and current capacity to absorb your volume.
+            </p>
+            <div class="service-area__cta-row">
+              <a href="#bid-form" class="btn btn--accent">
+                <i class="fa-solid fa-map-location-dot" aria-hidden="true"></i>
+                Check Your Coverage
+              </a>
+            </div>
+          </div>
+
+          <!-- Right: County list -->
+          <div class="service-area__map-panel" aria-label="List of covered service areas">
+            <div class="coverage-panel">
+              <div class="coverage-panel__header">
+                <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+                <span>Active Coverage Regions</span>
+              </div>
+
+              <div class="coverage-panel__state">
+                <h3 class="coverage-panel__state-name">
+                  <i class="fa-solid fa-star" aria-hidden="true"></i>
+                  Illinois
+                </h3>
+                <ul class="coverage-list" role="list">
+                  <li class="coverage-list__item">
+                    <i class="fa-solid fa-check-circle" aria-hidden="true"></i>
+                    <span><strong>Cook County</strong> — Chicago, Suburban North &amp; South</span>
+                  </li>
+                  <li class="coverage-list__item">
+                    <i class="fa-solid fa-check-circle" aria-hidden="true"></i>
+                    <span><strong>DuPage County</strong> — Wheaton, Naperville, Elmhurst</span>
+                  </li>
+                  <li class="coverage-list__item">
+                    <i class="fa-solid fa-check-circle" aria-hidden="true"></i>
+                    <span><strong>Will County</strong> — Joliet, Bolingbrook, Plainfield</span>
+                  </li>
+                  <li class="coverage-list__item">
+                    <i class="fa-solid fa-check-circle" aria-hidden="true"></i>
+                    <span><strong>Lake County, IL</strong> — Waukegan, Round Lake, Libertyville</span>
+                  </li>
+                  <li class="coverage-list__item">
+                    <i class="fa-solid fa-check-circle" aria-hidden="true"></i>
+                    <span><strong>Kane County</strong> — Aurora, Elgin, St. Charles</span>
+                  </li>
+                  <li class="coverage-list__item">
+                    <i class="fa-solid fa-check-circle" aria-hidden="true"></i>
+                    <span><strong>Kendall County</strong> — Yorkville, Oswego, Plano</span>
+                  </li>
                 </ul>
-            </nav>
+              </div>
+
+              <div class="coverage-panel__state">
+                <h3 class="coverage-panel__state-name">
+                  <i class="fa-solid fa-star" aria-hidden="true"></i>
+                  Indiana
+                </h3>
+                <ul class="coverage-list" role="list">
+                  <li class="coverage-list__item">
+                    <i class="fa-solid fa-check-circle" aria-hidden="true"></i>
+                    <span><strong>Lake County, IN</strong> — Gary, Hammond, Crown Point</span>
+                  </li>
+                  <li class="coverage-list__item">
+                    <i class="fa-solid fa-check-circle" aria-hidden="true"></i>
+                    <span><strong>Porter County</strong> — Valparaiso, Portage, Chesterton</span>
+                  </li>
+                  <li class="coverage-list__item">
+                    <i class="fa-solid fa-check-circle" aria-hidden="true"></i>
+                    <span><strong>LaPorte County</strong> — Michigan City, LaPorte, Westville</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="coverage-panel__footer">
+                <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+                Adjacent counties considered on request — contact us to confirm coverage.
+              </div>
+            </div>
+          </div>
+
         </div>
-    </header>
+      </div>
+    </section>
 
-    <main>
-        <section id="hero" class="hero-section">
-            <div class="hero-overlay"></div>
-            <div class="hero-container">
-                <div class="hero-content">
-                    <span class="hero-subtitle">Institutional Discipline. Entrepreneurial Vision.</span>
-                    <h1>Transforming Real Estate Portfolios Through Modern Management</h1>
-                    <p>We acquire, optimize, and manage residential and commercial assets across premier markets, delivering sustainable value and data-driven growth for our stakeholders.</p>
-                    <div class="hero-actions">
-                        <a href="#portfolio" class="btn btn-primary">View Portfolio</a>
-                        <a href="#strategy" class="btn btn-secondary">Our Strategy <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="stats-section">
-            <div class="stats-container">
-                <div class="stat-card">
-                    <div class="stat-icon"><i class="fas fa-building"></i></div>
-                    <div class="stat-number">10+</div>
-                    <div class="stat-label">Residential Units</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon"><i class="fas fa-chart-line"></i></div>
-                    <div class="stat-number">$4.5M+</div>
-                    <div class="stat-label">Assets Under Management</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon"><i class="fas fa-percentage"></i></div>
-                    <div class="stat-number">12.4%</div>
-                    <div class="stat-label">Average Annual ROI</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon"><i class="fas fa-shield-alt"></i></div>
-                    <div class="stat-number">100%</div>
-                    <div class="stat-label">Accountability & Execution</div>
-                </div>
-            </div>
-        </section>
-
-        <section id="about" class="about-section">
-            <div class="section-container">
-                <div class="about-grid">
-                    <div class="about-image-wrapper">
-                        <div class="about-image-placeholder">
-                            <i class="fas fa-city"></i>
-                        </div>
-                    </div>
-                    <div class="about-text">
-                        <span class="section-tag">Who We Are</span>
-                        <h2>Built on Accountability, Designed for Growth</h2>
-                        <p class="lead-text">Unified Investments is a premier real estate investment and asset management firm operating under the Innovate PM Solutions umbrella.</p>
-                        <p>We don't participate in organizational theater or rely on speculative market trends. Guided by a foundation of rigorous project management principles and advanced data analytics, we source and optimize high-yield multi-family and commercial properties.</p>
-                        <p>Our operational framework bridges the gap between complex logistical execution and bottom-line stability. We maximize valuation by treating every property asset as a high-performing enterprise program.</p>
-                        <div class="about-features">
-                            <div class="feature-item">
-                                <i class="fas fa-check-circle"></i>
-                                <div>
-                                    <strong>Veteran-Led Discipline:</strong> Precision operational execution applied directly to property management and tenant systems.
-                                </div>
-                            </div>
-                            <div class="feature-item">
-                                <i class="fas fa-check-circle"></i>
-                                <div>
-                                    <strong>Data-Centric Underwriting:</strong> Advanced risk-mitigation algorithms mapping clear economic markers before capital allocation.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="strategy" class="strategy-section">
-            <div class="section-container">
-                <div class="section-header">
-                    <span class="section-tag">Investment Criteria</span>
-                    <h2>Our Core Investment Strategies</h2>
-                    <p>We target stable, foundational assets while preparing aggressively for scaled, commercial multi-unit expansion.</p>
-                </div>
-                
-                <div class="strategy-grid">
-                    <div class="strategy-card">
-                        <div class="strategy-icon"><i class="fas fa-home"></i></div>
-                        <h3>Residential Portfolio Stability</h3>
-                        <p>Maintaining a solid baseline of localized multi-family environments. We look for continuous yield, minimal frictional vacancy, and practical capital improvements that drive clear asset appreciation.</p>
-                        <ul class="strategy-list">
-                            <li><i class="fas fa-chevron-right"></i> Target: 2-4 Unit Spaces</li>
-                            <li><i class="fas fa-chevron-right"></i> Focus: Strong Cash-on-Cash Return</li>
-                            <li><i class="fas fa-chevron-right"></i> Execution: Process-Driven Management</li>
-                        </ul>
-                    </div>
-
-                    <div class="strategy-card active">
-                        <div class="strategy-badge">Active Focus</div>
-                        <div class="strategy-icon"><i class="fas fa-hotel"></i></div>
-                        <h3>Commercial & Multi-Unit Scale</h3>
-                        <p>Leveraging systematic infrastructure to acquire medium-scale multi-family spaces (6+ units). We identify under-managed or structurally sound targets primed for strategic operational turnaround.</p>
-                        <ul class="strategy-list">
-                            <li><i class="fas fa-chevron-right"></i> Target: 6 to 20 Unit Portfolios</li>
-                            <li><i class="fas fa-chevron-right"></i> Focus: Value-Add Capital Playbook</li>
-                            <li><i class="fas fa-chevron-right"></i> Execution: Scaled Property Automation</li>
-                        </ul>
-                    </div>
-
-                    <div class="strategy-card">
-                        <div class="strategy-icon"><i class="fas fa-network-wired"></i></div>
-                        <h3>Agentic Asset Optimization</h3>
-                        <p>Integrating modern technical workflows into traditional property systems. We deploy agentic AI orchestrators and multi-agent pipelines to audit data streams, evaluate properties, and scale competitive insight.</p>
-                        <ul class="strategy-list">
-                            <li><i class="fas fa-chevron-right"></i> Target: Predictive Sourcing Pipelines</li>
-                            <li><i class="fas fa-chevron-right"></i> Focus: Automated Overhead Reduction</li>
-                            <li><i class="fas fa-chevron-right"></i> Execution: Custom Analytical Models</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="portfolio" class="portfolio-section">
-            <div class="section-container">
-                <div class="portfolio-header">
-                    <div>
-                        <span class="section-tag">Track Record</span>
-                        <h2>Current Holdings & Target Markets</h2>
-                    </div>
-                    <div class="portfolio-filter">
-                        <button class="filter-btn active" data-filter="all">All Properties</button>
-                        <button class="filter-btn" data-filter="residential">Residential</button>
-                        <button class="filter-btn" data-filter="commercial">Commercial Targets</button>
-                    </div>
-                </div>
-
-                <div class="portfolio-grid">
-                    <div class="portfolio-item residential">
-                        <div class="portfolio-img-placeholder">
-                            <i class="fas fa-building-user"></i>
-                        </div>
-                        <div class="portfolio-info">
-                            <span class="property-tag">Multi-Family</span>
-                            <h3>The Greater Chicago Residential Portfolio</h3>
-                            <p class="property-location"><i class="fas fa-map-marker-alt"></i> Cook County / Greater Chicago Area, IL</p>
-                            <div class="property-details">
-                                <span><strong>10</strong> Units Active</span>
-                                <span><strong>100%</strong> Occupancy</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="portfolio-item commercial">
-                        <div class="portfolio-img-placeholder target">
-                            <i class="fas fa-chart-pie"></i>
-                        </div>
-                        <div class="portfolio-info">
-                            <span class="property-tag speculative">Mid-Market Commercial</span>
-                            <h3>6+ Unit Commercial Multi-Family Target</h3>
-                            <p class="property-location"><i class="fas fa-map-marker-alt"></i> Emerging Illinois Sub-Markets</p>
-                            <div class="property-details">
-                                <span><strong>6-12</strong> Unit Profile</span>
-                                <span><strong>Q3-Q4</strong> Underwriting Phase</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" class="contact-section">
-            <div class="section-container">
-                <div class="contact-grid">
-                    <div class="contact-info-panel">
-                        <span class="section-tag inversion">Connect With Us</span>
-                        <h2>Let's Discuss Strategic Value</h2>
-                        <p>Whether you're looking to discuss real estate assets, process management methodologies, or enterprise integration, we welcome serious, data-backed conversation.</p>
-                        
-                        <div class="contact-details-list">
-                            <div class="contact-detail-card">
-                                <i class="fas fa-location-dot"></i>
-                                <div>
-                                    <h4>Corporate Presence</h4>
-                                    <p>Greater Chicago Area, IL</p>
-                                </div>
-                            </div>
-                            <div class="contact-detail-card">
-                                <i class="fas fa-envelope-open-text"></i>
-                                <div>
-                                    <h4>Inquiries</h4>
-                                    <p>info@innovatepm-solutions.com</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-form-panel">
-                        <form class="cta-form" onsubmit="event.preventDefault(); alert('Inquiry successfully logged.');">
-                            <div class="form-group-row">
-                                <div class="form-group">
-                                    <label for="name">Full Name</label>
-                                    <input type="text" id="name" required placeholder="John Doe">
-                                </div>
-                                <div class="form-group">
-                                    <label for="email">Email Address</label>
-                                    <input type="email" id="email" required placeholder="john@example.com">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="subject">Subject</label>
-                                <input type="text" id="subject" required placeholder="Investment Portfolio Consultation">
-                            </div>
-                            <div class="form-group">
-                                <label for="message">Message</label>
-                                <textarea id="message" rows="5" required placeholder="Outline your asset management objectives or project integration parameters..."></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-block">Submit Inquiry</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="main-footer">
-        <div class="footer-top">
-            <div class="footer-container">
-                <div class="footer-brand-column">
-                    <a href="#" class="logo footer-logo">
-                        <span class="logo-accent">Unified</span>Investments
-                    </a>
-                    <p>Enterprise discipline applied to real estate development and asset optimization. Part of the Innovate PM Solutions framework.</p>
-                    <div class="footer-social-icons">
-                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    </div>
-                </div>
-                <div class="footer-links-column">
-                    <h4>Navigation</h4>
-                    <ul>
-                        <li><a href="#hero">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#strategy">Our Strategy</a></li>
-                        <li><a href="#portfolio">Portfolio</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links-column">
-                    <h4>Core Entities</h4>
-                    <ul>
-                        <li><a href="https://innovatepm-solutions.com" target="_blank" rel="noopener">Innovate PM Solutions</a></li>
-                        <li><a href="#">PMOtivated LLC</a></li>
-                        <li><a href="https://reginalcampbell.com" target="_blank" rel="noopener">Reginal Campbell Platform</a></li>
-                    </ul>
-                </div>
-            </div>
+    <!-- ============================================================
+         WHY CHOOSE US
+    ============================================================ -->
+    <section class="section why-us" id="why-us" aria-labelledby="why-us-heading">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">Our Differentiators</span>
+          <h2 class="section-title" id="why-us-heading">The Unified Investments Standard</h2>
+          <p class="section-subtitle">
+            We aren't a general contractor directory. We're a vertically organized field operations company — purpose-built for the demands of REO servicers, national asset managers, and regional property investors.
+          </p>
         </div>
-        <div class="footer-bottom">
-            <div class="footer-container bottom-flex">
-                <p>&copy; 2026 Unified Investments / Innovate PM Solutions. All Rights Reserved. Certifications: PMP.</p>
-                <div class="footer-legal-links">
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms of Service</a>
-                </div>
-            </div>
-        </div>
-    </footer>
 
-    <script src="js/main.js"></script>
+        <div class="why-us__grid">
+
+          <div class="why-card">
+            <div class="why-card__icon" aria-hidden="true">
+              <i class="fa-solid fa-id-card-clip"></i>
+            </div>
+            <div class="why-card__body">
+              <h3 class="why-card__title">Fully Licensed &amp; Insured</h3>
+              <p class="why-card__desc">Unified Investments carries current general liability and commercial auto coverage, with Certificates of Insurance issued on demand. We maintain all required state and local contractor licensing for every service category we execute.</p>
+            </div>
+          </div>
+
+          <div class="why-card">
+            <div class="why-card__icon" aria-hidden="true">
+              <i class="fa-solid fa-gauge-high"></i>
+            </div>
+            <div class="why-card__body">
+              <h3 class="why-card__title">Industry-Leading Field Turnarounds</h3>
+              <p class="why-card__desc">Standard work orders are completed within 48–72 hours of assignment. Emergency and priority escalations receive same-day field dispatch across our entire coverage zone — no exceptions, no excuses.</p>
+            </div>
+          </div>
+
+          <div class="why-card">
+            <div class="why-card__icon" aria-hidden="true">
+              <i class="fa-solid fa-camera"></i>
+            </div>
+            <div class="why-card__body">
+              <h3 class="why-card__title">Photo-Documented Compliance Reporting</h3>
+              <p class="why-card__desc">Every assignment generates a structured, time-stamped photo report with geo-tagged before, during, and after documentation. Reports are uploaded directly to your work order platform or delivered as a formatted PDF within hours of job completion.</p>
+            </div>
+          </div>
+
+          <div class="why-card">
+            <div class="why-card__icon" aria-hidden="true">
+              <i class="fa-solid fa-star"></i>
+            </div>
+            <div class="why-card__body">
+              <h3 class="why-card__title">Verified PropertyVendors.com Vendor</h3>
+              <p class="why-card__desc">With 5+ years of documented performance history on PropertyVendors.com, Unified Investments has a traceable, auditable vendor record that national servicers and asset managers can independently verify before onboarding.</p>
+            </div>
+          </div>
+
+          <div class="why-card">
+            <div class="why-card__icon" aria-hidden="true">
+              <i class="fa-solid fa-handshake"></i>
+            </div>
+            <div class="why-card__body">
+              <h3 class="why-card__title">New Vendor Partnerships Welcome</h3>
+              <p class="why-card__desc">We are actively accepting new national servicer, regional management firm, and direct investor accounts. We have current field capacity to absorb new volume and will not compromise service quality to do so.</p>
+            </div>
+          </div>
+
+          <div class="why-card">
+            <div class="why-card__icon" aria-hidden="true">
+              <i class="fa-solid fa-phone-volume"></i>
+            </div>
+            <div class="why-card__body">
+              <h3 class="why-card__title">Single Point of Contact Operations</h3>
+              <p class="why-card__desc">No call centers. No ticket queues. Our field operations managers are directly reachable by phone and email, giving your team a decisive escalation path for any property situation that demands immediate human judgment.</p>
+            </div>
+          </div>
+
+          <div class="why-card">
+            <div class="why-card__icon" aria-hidden="true">
+              <i class="fa-solid fa-file-invoice-dollar"></i>
+            </div>
+            <div class="why-card__body">
+              <h3 class="why-card__title">Transparent, Competitive Pricing</h3>
+              <p class="why-card__desc">We provide itemized, written bid estimates for every project scope — no surprise change orders, no padded invoices. Our pricing benchmarks against HUD fee schedules while reflecting the quality premium our clients actually receive.</p>
+            </div>
+          </div>
+
+          <div class="why-card">
+            <div class="why-card__icon" aria-hidden="true">
+              <i class="fa-solid fa-layer-group"></i>
+            </div>
+            <div class="why-card__body">
+              <h3 class="why-card__title">Multi-Trade Self-Performance</h3>
+              <p class="why-card__desc">Rather than brokering work to unvetted subs, Unified Investments self-performs the majority of our service catalog with trained, background-checked field crews. This means consistent quality, faster timelines, and direct accountability on every work order.</p>
+            </div>
+          </div>
+
+        </div><!-- /.why-us__grid -->
+      </div>
+    </section>
+
+    <!-- ============================================================
+         BID REQUEST FORM
+    ============================================================ -->
+    <section class="section bid-section" id="bid-form" aria-labelledby="bid-form-heading">
+      <div class="container">
+        <div class="bid-section__grid">
+
+          <!-- Left: Form context panel -->
+          <div class="bid-section__context">
+            <span class="section-eyebrow section-eyebrow--light">Get Started</span>
+            <h2 class="section-title section-title--light" id="bid-form-heading">
+              Request an Immediate Bid
+            </h2>
+            <p class="bid-section__body">
+              Submit your work order details below and a Unified Investments field operations manager will respond with a written estimate — typically within 2–4 business hours for standard requests, and within the hour for marked emergency assignments.
+            </p>
+            <ul class="bid-section__promises" role="list">
+              <li>
+                <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+                Written bid delivered same business day
+              </li>
+              <li>
+                <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+                No commitment required to receive a quote
+              </li>
+              <li>
+                <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+                Emergency requests acknowledged within 60 minutes
+              </li>
+              <li>
+                <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+                COI provided with any accepted work order
+              </li>
+            </ul>
+          </div>
+
+          <!-- Right: Netlify Form -->
+          <div class="bid-section__form-panel">
+            <form
+              class="bid-form"
+              id="bid-request-form"
+              name="bid-request"
+              method="POST"
+              action="/success"
+              data-netlify="true"
+              netlify-honeypot="bot-field"
+              novalidate
+              aria-label="Bid request form"
+            >
+              <!-- Netlify required hidden inputs -->
+              <input type="hidden" name="form-name" value="bid-request" />
+              <!-- Honeypot spam field (hidden from real users) -->
+              <p class="bid-form__honeypot" aria-hidden="true">
+                <label>Don't fill this out if you're human: <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
+              </p>
+
+              <div class="bid-form__row">
+                <div class="bid-form__group">
+                  <label class="bid-form__label" for="field-name">
+                    Full Name <span class="bid-form__required" aria-label="required">*</span>
+                  </label>
+                  <input
+                    class="bid-form__input"
+                    type="text"
+                    id="field-name"
+                    name="name"
+                    placeholder="Jane Smith"
+                    autocomplete="name"
+                    aria-required="true"
+                    required
+                  />
+                  <span class="bid-form__error" id="error-name" role="alert" aria-live="polite"></span>
+                </div>
+
+                <div class="bid-form__group">
+                  <label class="bid-form__label" for="field-company">
+                    Company / Organization <span class="bid-form__required" aria-label="required">*</span>
+                  </label>
+                  <input
+                    class="bid-form__input"
+                    type="text"
+                    id="field-company"
+                    name="company"
+                    placeholder="Acme Asset Management LLC"
+                    autocomplete="organization"
+                    aria-required="true"
+                    required
+                  />
+                  <span class="bid-form__error" id="error-company" role="alert" aria-live="polite"></span>
+                </div>
+              </div>
+
+              <div class="bid-form__row">
+                <div class="bid-form__group">
+                  <label class="bid-form__label" for="field-email">
+                    Email Address <span class="bid-form__required" aria-label="required">*</span>
+                  </label>
+                  <input
+                    class="bid-form__input"
+                    type="email"
+                    id="field-email"
+                    name="email"
+                    placeholder="jane@company.com"
+                    autocomplete="email"
+                    aria-required="true"
+                    required
+                  />
+                  <span class="bid-form__error" id="error-email" role="alert" aria-live="polite"></span>
+                </div>
+
+                <div class="bid-form__group">
+                  <label class="bid-form__label" for="field-phone">
+                    Phone Number
+                  </label>
+                  <input
+                    class="bid-form__input"
+                    type="tel"
+                    id="field-phone"
+                    name="phone"
+                    placeholder="(312) 555-0100"
+                    autocomplete="tel"
+                  />
+                </div>
+              </div>
+
+              <div class="bid-form__group bid-form__group--full">
+                <label class="bid-form__label" for="field-address">
+                  Property Address <span class="bid-form__required" aria-label="required">*</span>
+                </label>
+                <input
+                  class="bid-form__input"
+                  type="text"
+                  id="field-address"
+                  name="property-address"
+                  placeholder="1234 W. Lakeview Ave, Chicago, IL 60614"
+                  autocomplete="street-address"
+                  aria-required="true"
+                  required
+                />
+                <span class="bid-form__error" id="error-address" role="alert" aria-live="polite"></span>
+              </div>
+
+              <div class="bid-form__row">
+                <div class="bid-form__group">
+                  <label class="bid-form__label" for="field-service">
+                    Service Needed <span class="bid-form__required" aria-label="required">*</span>
+                  </label>
+                  <div class="bid-form__select-wrapper">
+                    <select
+                      class="bid-form__input bid-form__select"
+                      id="field-service"
+                      name="service"
+                      aria-required="true"
+                      required
+                    >
+                      <option value="" disabled selected>Select a service…</option>
+                      <option value="winterization">Winterization</option>
+                      <option value="grass-cut">Grass Cut / Lawn Maintenance</option>
+                      <option value="trashout">Trashout / Debris Removal</option>
+                      <option value="roof-repair">Roof Repair</option>
+                      <option value="low-voltage-electrical">Low-Voltage Electrical Maintenance</option>
+                      <option value="hvac">HVAC Service</option>
+                      <option value="eviction">Eviction Services</option>
+                      <option value="initial-make-ready">Initial / Make-Ready Inspection</option>
+                      <option value="other">Other / Multiple Services</option>
+                    </select>
+                    <i class="fa-solid fa-chevron-down bid-form__select-icon" aria-hidden="true"></i>
+                  </div>
+                  <span class="bid-form__error" id="error-service" role="alert" aria-live="polite"></span>
+                </div>
+
+                <div class="bid-form__group">
+                  <label class="bid-form__label" for="field-urgency">
+                    Urgency Level <span class="bid-form__required" aria-label="required">*</span>
+                  </label>
+                  <div class="bid-form__select-wrapper">
+                    <select
+                      class="bid-form__input bid-form__select"
+                      id="field-urgency"
+                      name="urgency"
+                      aria-required="true"
+                      required
+                    >
+                      <option value="" disabled selected>Select urgency…</option>
+                      <option value="emergency">🔴 Emergency — Immediate Response Required</option>
+                      <option value="standard-48hr">🟡 Standard — 48-Hour Completion</option>
+                      <option value="routine">🟢 Routine — Flexible Scheduling</option>
+                    </select>
+                    <i class="fa-solid fa-chevron-down bid-form__select-icon" aria-hidden="true"></i>
+                  </div>
+                  <span class="bid-form__error" id="error-urgency" role="alert" aria-live="polite"></span>
+                </div>
+              </div>
+
+              <div class="bid-form__group bid-form__group--full">
+                <label class="bid-form__label" for="field-message">
+                  Additional Details / Scope Notes
+                </label>
+                <textarea
+                  class="bid-form__input bid-form__textarea"
+                  id="field-message"
+                  name="message"
+                  rows="5"
+                  placeholder="Describe the property condition, any access restrictions, specific scope items, or additional context our team should know before responding…"
+                ></textarea>
+              </div>
+
+              <div class="bid-form__submit-row">
+                <button
+                  class="btn btn--accent btn--lg bid-form__submit"
+                  type="submit"
+                  id="bid-submit-btn"
+                >
+                  <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+                  Submit Bid Request
+                </button>
+                <p class="bid-form__disclaimer">
+                  <i class="fa-solid fa-lock" aria-hidden="true"></i>
+                  Your information is kept confidential and never shared with third parties.
+                </p>
+              </div>
+
+            </form>
+          </div><!-- /.bid-section__form-panel -->
+
+        </div>
+      </div>
+    </section>
+
+  </main><!-- /#main-content -->
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__grid">
+
+        <!-- Column 1: Brand & About -->
+        <div class="footer__col footer__col--brand">
+          <a href="index.html" class="footer__brand-link" aria-label="Unified Investments Inc. – Home">
+            <span class="footer__brand-icon" aria-hidden="true"><i class="fa-solid fa-building-columns"></i></span>
+            <span class="footer__brand-name">Unified Investments Inc.</span>
+          </a>
+          <p class="footer__tagline">
+            Property Preservation &amp; Management Maintenance — Chicago &amp; Northwest Indiana
+          </p>
+          <address class="footer__address" aria-label="Company address">
+            <p>Serving the Greater Chicagoland Area</p>
+            <p>Chicago, IL &amp; Northwest Indiana</p>
+          </address>
+          <div class="footer__trust-badge" role="img" aria-label="Verified vendor on PropertyVendors.com for 5 plus years">
+            <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+            <span>5+ Years on PropertyVendors.com</span>
+          </div>
+        </div>
+
+        <!-- Column 2: Services Links -->
+        <div class="footer__col">
+          <h3 class="footer__col-heading">Our Services</h3>
+          <ul class="footer__links" role="list">
+            <li><a href="#services" class="footer__link">Winterizations</a></li>
+            <li><a href="#services" class="footer__link">Grass Cuts</a></li>
+            <li><a href="#services" class="footer__link">Trashouts</a></li>
+            <li><a href="#services" class="footer__link">Roof Repairs</a></li>
+            <li><a href="#services" class="footer__link">Low-Voltage Electrical</a></li>
+            <li><a href="#services" class="footer__link">HVAC</a></li>
+            <li><a href="#services" class="footer__link">Eviction Services</a></li>
+            <li><a href="#services" class="footer__link">Initial / Make-Ready</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Coverage -->
+        <div class="footer__col">
+          <h3 class="footer__col-heading">Coverage Areas</h3>
+          <ul class="footer__links" role="list">
+            <li><a href="#service-area" class="footer__link">Cook County, IL</a></li>
+            <li><a href="#service-area" class="footer__link">DuPage County, IL</a></li>
+            <li><a href="#service-area" class="footer__link">Will County, IL</a></li>
+            <li><a href="#service-area" class="footer__link">Lake County, IL</a></li>
+            <li><a href="#service-area" class="footer__link">Kane County, IL</a></li>
+            <li><a href="#service-area" class="footer__link">Lake County, IN</a></li>
+            <li><a href="#service-area" class="footer__link">Porter County, IN</a></li>
+            <li><a href="#service-area" class="footer__link">LaPorte County, IN</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Contact & CTA -->
+        <div class="footer__col">
+          <h3 class="footer__col-heading">Contact &amp; Operations</h3>
+          <ul class="footer__contact-list" role="list">
+            <li class="footer__contact-item">
+              <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+              <!-- UPDATE: Replace with real email address -->
+              <a href="mailto:operations@unifiedinvestmentsinc.com" class="footer__link">operations@unifiedinvestmentsinc.com</a>
+            </li>
+            <li class="footer__contact-item">
+              <i class="fa-solid fa-phone" aria-hidden="true"></i>
+              <!-- UPDATE: Replace with real phone number -->
+              <a href="tel:+13125550100" class="footer__link">(312) 555-0100</a>
+            </li>
+            <li class="footer__contact-item">
+              <i class="fa-solid fa-clock" aria-hidden="true"></i>
+              <span>Mon–Fri: 7:00 AM – 6:00 PM CST<br />Emergency Line: 24/7</span>
+            </li>
+          </ul>
+          <a href="#bid-form" class="btn btn--accent footer__form-cta">
+            <i class="fa-solid fa-file-contract" aria-hidden="true"></i>
+            Request a Bid
+          </a>
+        </div>
+
+      </div><!-- /.footer__grid -->
+
+      <!-- Footer Bottom Bar -->
+      <div class="footer__bottom">
+        <p class="footer__copyright">
+          &copy; <span id="footer-year"></span> Unified Investments Inc. All rights reserved. Property Preservation &amp; Management Services — Chicago &amp; Northwest Indiana.
+        </p>
+        <a href="#hero" class="footer__back-top" aria-label="Back to top of page">
+          <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+          <span>Back to Top</span>
+        </a>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Mobile Sticky CTA Bar (injected/controlled by JS) -->
+  <div class="mobile-sticky-bar" id="mobile-sticky-bar" role="region" aria-label="Quick contact actions">
+    <a href="tel:+13125550100" class="mobile-sticky-bar__btn mobile-sticky-bar__btn--call">
+      <i class="fa-solid fa-phone" aria-hidden="true"></i>
+      <span>Call Now</span>
+    </a>
+    <a href="#bid-form" class="mobile-sticky-bar__btn mobile-sticky-bar__btn--bid">
+      <i class="fa-solid fa-file-signature" aria-hidden="true"></i>
+      <span>Get Bid</span>
+    </a>
+  </div>
+  <!-- Inline JavaScript -->
+  <script>
+/**
+ * UNIFIED INVESTMENTS INC.
+ * js/main.js — Isolated Behavior Layer
+ *
+ * Architecture: All logic wrapped in DOMContentLoaded.
+ * No globals polluted. No inline event handlers in HTML.
+ * Each feature is a self-contained init function.
+ *
+ * Feature Modules:
+ *  1. Navigation Scroll State
+ *  2. Mobile Drawer Toggle
+ *  3. Dynamic Copyright Year
+ *  4. Mobile Sticky CTA Bar
+ *  5. Bid Request Form Validation
+ *  6. Smooth Anchor Scroll (augmented)
+ */
+
+document.addEventListener('DOMContentLoaded', function () {
+  'use strict';
+
+  // ============================================================
+  // 1. NAVIGATION SCROLL STATE
+  //    Adds a .scrolled class to the header after 40px of scroll
+  //    for a subtle background darkening effect.
+  // ============================================================
+  (function initNavScrollState() {
+    var header = document.getElementById('site-header');
+    if (!header) return;
+
+    var SCROLL_THRESHOLD = 40;
+    var ticking = false;
+
+    function updateNavState() {
+      if (window.scrollY > SCROLL_THRESHOLD) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', function () {
+      if (!ticking) {
+        window.requestAnimationFrame(updateNavState);
+        ticking = true;
+      }
+    }, { passive: true });
+
+    // Run once on load in case page is loaded mid-scroll
+    updateNavState();
+  })();
+
+
+  // ============================================================
+  // 2. MOBILE DRAWER TOGGLE
+  //    Handles burger open/close, overlay click-out to dismiss,
+  //    ESC key to close, and body scroll lock.
+  // ============================================================
+  (function initMobileDrawer() {
+    var burger = document.getElementById('nav-burger');
+    var drawer = document.getElementById('mobile-drawer');
+    var body   = document.body;
+    if (!burger || !drawer) return;
+
+    var isOpen = false;
+
+    function openDrawer() {
+      isOpen = true;
+      burger.classList.add('is-open');
+      drawer.classList.add('is-open');
+      drawer.setAttribute('aria-hidden', 'false');
+      burger.setAttribute('aria-expanded', 'true');
+      burger.setAttribute('aria-label', 'Close navigation menu');
+      body.classList.add('drawer-open');
+      // Move focus into the drawer for keyboard accessibility
+      var firstLink = drawer.querySelector('a, button');
+      if (firstLink) {
+        firstLink.focus();
+      }
+    }
+
+    function closeDrawer() {
+      isOpen = false;
+      burger.classList.remove('is-open');
+      drawer.classList.remove('is-open');
+      drawer.setAttribute('aria-hidden', 'true');
+      burger.setAttribute('aria-expanded', 'false');
+      burger.setAttribute('aria-label', 'Open navigation menu');
+      body.classList.remove('drawer-open');
+      burger.focus();
+    }
+
+    // Burger toggle
+    burger.addEventListener('click', function () {
+      if (isOpen) {
+        closeDrawer();
+      } else {
+        openDrawer();
+      }
+    });
+
+    // Close drawer when any link inside it is clicked (data-drawer-close)
+    var drawerCloseLinks = drawer.querySelectorAll('[data-drawer-close]');
+    drawerCloseLinks.forEach(function (link) {
+      link.addEventListener('click', function () {
+        closeDrawer();
+      });
+    });
+
+    // ESC key closes the drawer
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && isOpen) {
+        closeDrawer();
+      }
+    });
+
+    // Close if user clicks outside the drawer on a wide viewport that
+    // somehow triggers the event (belt-and-suspenders)
+    document.addEventListener('click', function (e) {
+      if (
+        isOpen &&
+        !drawer.contains(e.target) &&
+        !burger.contains(e.target)
+      ) {
+        closeDrawer();
+      }
+    });
+  })();
+
+
+  // ============================================================
+  // 3. DYNAMIC COPYRIGHT YEAR
+  //    Injects the current year into the footer copyright line
+  //    so no one ever needs to manually update it.
+  // ============================================================
+  (function initCopyrightYear() {
+    var yearEl = document.getElementById('footer-year');
+    if (!yearEl) return;
+    yearEl.textContent = new Date().getFullYear().toString();
+  })();
+
+
+  // ============================================================
+  // 4. MOBILE STICKY CTA BAR
+  //    Displays a fixed bottom bar on mobile after the user
+  //    scrolls past the hero section. Hides when the user
+  //    reaches the bid form section (redundant at that point).
+  // ============================================================
+  (function initMobileStickyBar() {
+    var bar     = document.getElementById('mobile-sticky-bar');
+    var hero    = document.getElementById('hero');
+    var bidForm = document.getElementById('bid-form');
+    if (!bar) return;
+
+    var ticking = false;
+    var MOBILE_BREAKPOINT = 768;
+
+    function updateBarVisibility() {
+      // Only apply on mobile viewports
+      if (window.innerWidth >= MOBILE_BREAKPOINT) {
+        bar.classList.remove('is-visible');
+        ticking = false;
+        return;
+      }
+
+      var scrollY       = window.scrollY;
+      var heroBottom    = hero ? (hero.offsetTop + hero.offsetHeight) : 300;
+      var formTop       = bidForm ? bidForm.offsetTop : Infinity;
+      var windowBottom  = scrollY + window.innerHeight;
+
+      // Show after hero, hide when bid form is in view
+      var pastHero    = scrollY > heroBottom;
+      var formVisible = windowBottom > formTop + 100;
+
+      if (pastHero && !formVisible) {
+        bar.classList.add('is-visible');
+      } else {
+        bar.classList.remove('is-visible');
+      }
+
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', function () {
+      if (!ticking) {
+        window.requestAnimationFrame(updateBarVisibility);
+        ticking = true;
+      }
+    }, { passive: true });
+
+    window.addEventListener('resize', function () {
+      if (!ticking) {
+        window.requestAnimationFrame(updateBarVisibility);
+        ticking = true;
+      }
+    }, { passive: true });
+
+    updateBarVisibility();
+  })();
+
+
+  // ============================================================
+  // 5. BID REQUEST FORM VALIDATION
+  //    Client-side validation with real-time error states and
+  //    accessible ARIA-live error messages. Submits to Netlify
+  //    on success (native form handling takes over after validation).
+  // ============================================================
+  (function initFormValidation() {
+    var form       = document.getElementById('bid-request-form');
+    var submitBtn  = document.getElementById('bid-submit-btn');
+    if (!form || !submitBtn) return;
+
+    // ---- Validation Rules ----------------------------------------
+    var validators = {
+      'field-name': {
+        errorId: 'error-name',
+        validate: function (val) {
+          if (!val.trim()) return 'Please enter your full name.';
+          if (val.trim().length < 2) return 'Name must be at least 2 characters.';
+          return null;
+        }
+      },
+      'field-company': {
+        errorId: 'error-company',
+        validate: function (val) {
+          if (!val.trim()) return 'Please enter your company or organization name.';
+          return null;
+        }
+      },
+      'field-email': {
+        errorId: 'error-email',
+        validate: function (val) {
+          if (!val.trim()) return 'Please enter your email address.';
+          // RFC-5321 simplified pattern
+          var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+          if (!emailPattern.test(val.trim())) {
+            return 'Please enter a valid email address (e.g. name@company.com).';
+          }
+          return null;
+        }
+      },
+      'field-address': {
+        errorId: 'error-address',
+        validate: function (val) {
+          if (!val.trim()) return 'Please enter the property address.';
+          if (val.trim().length < 8) return 'Please enter a complete street address.';
+          return null;
+        }
+      },
+      'field-service': {
+        errorId: 'error-service',
+        validate: function (val) {
+          if (!val) return 'Please select a service type.';
+          return null;
+        }
+      },
+      'field-urgency': {
+        errorId: 'error-urgency',
+        validate: function (val) {
+          if (!val) return 'Please select an urgency level.';
+          return null;
+        }
+      }
+    };
+
+    // ---- Helper: show/clear single field error --------------------
+    function showError(fieldId, message) {
+      var field    = document.getElementById(fieldId);
+      var errorEl  = document.getElementById(validators[fieldId].errorId);
+      if (!field || !errorEl) return;
+
+      field.classList.add('has-error');
+      errorEl.textContent = message;
+      errorEl.classList.add('is-visible');
+      field.setAttribute('aria-invalid', 'true');
+      field.setAttribute('aria-describedby', validators[fieldId].errorId);
+    }
+
+    function clearError(fieldId) {
+      var field   = document.getElementById(fieldId);
+      var errorEl = document.getElementById(validators[fieldId].errorId);
+      if (!field || !errorEl) return;
+
+      field.classList.remove('has-error');
+      errorEl.textContent = '';
+      errorEl.classList.remove('is-visible');
+      field.setAttribute('aria-invalid', 'false');
+      field.removeAttribute('aria-describedby');
+    }
+
+    // ---- Validate a single field by its ID -----------------------
+    function validateField(fieldId) {
+      var field = document.getElementById(fieldId);
+      if (!field) return true;
+      var error = validators[fieldId].validate(field.value);
+      if (error) {
+        showError(fieldId, error);
+        return false;
+      } else {
+        clearError(fieldId);
+        return true;
+      }
+    }
+
+    // ---- Validate all fields, return true if all pass ------------
+    function validateAll() {
+      var valid = true;
+      var firstInvalidId = null;
+
+      Object.keys(validators).forEach(function (fieldId) {
+        var fieldValid = validateField(fieldId);
+        if (!fieldValid) {
+          valid = false;
+          if (!firstInvalidId) {
+            firstInvalidId = fieldId;
+          }
+        }
+      });
+
+      // Scroll to and focus the first invalid field for accessibility
+      if (firstInvalidId) {
+        var firstInvalidEl = document.getElementById(firstInvalidId);
+        if (firstInvalidEl) {
+          firstInvalidEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          firstInvalidEl.focus();
+        }
+      }
+
+      return valid;
+    }
+
+    // ---- Real-time validation: clear errors on input/change ------
+    Object.keys(validators).forEach(function (fieldId) {
+      var field = document.getElementById(fieldId);
+      if (!field) return;
+
+      // Validate on blur (when leaving a field)
+      field.addEventListener('blur', function () {
+        validateField(fieldId);
+      });
+
+      // Clear error on input/change (user is correcting)
+      field.addEventListener('input', function () {
+        if (field.classList.contains('has-error')) {
+          clearError(fieldId);
+        }
+      });
+
+      field.addEventListener('change', function () {
+        if (field.classList.contains('has-error')) {
+          validateField(fieldId);
+        }
+      });
+    });
+
+    // ---- Form submit handler -------------------------------------
+    form.addEventListener('submit', function (e) {
+      var isValid = validateAll();
+
+      if (!isValid) {
+        e.preventDefault();
+        return;
+      }
+
+      // Valid: show loading state on button before Netlify submission
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i> Sending…';
+      submitBtn.setAttribute('aria-busy', 'true');
+
+      // Netlify's native form handler takes over after this point.
+      // The form will POST to /success (configured in action attr).
+      // If you need to intercept with fetch() instead of native POST,
+      // uncomment the block below and comment out the native submit above.
+
+      /*
+      e.preventDefault();
+      var formData = new FormData(form);
+
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formData).toString()
+      })
+        .then(function () {
+          showSuccessMessage();
+        })
+        .catch(function (err) {
+          console.error('Form submission error:', err);
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Submit Bid Request';
+          submitBtn.removeAttribute('aria-busy');
+          alert('There was a problem submitting your request. Please try again or contact us directly.');
+        });
+      */
+    });
+
+    // ---- Optional: post-AJAX success state (used if fetch block enabled) ---
+    function showSuccessMessage() {
+      var formPanel = form.closest('.bid-section__form-panel');
+      if (!formPanel) return;
+
+      formPanel.innerHTML = [
+        '<div class="bid-form-success" role="alert" aria-live="assertive">',
+        '  <div class="bid-form-success__icon" aria-hidden="true">',
+        '    <i class="fa-solid fa-circle-check"></i>',
+        '  </div>',
+        '  <h3 class="bid-form-success__title">Bid Request Submitted</h3>',
+        '  <p class="bid-form-success__body">',
+        '    Thank you — a Unified Investments field operations manager will respond',
+        '    with a written estimate within 2–4 business hours.',
+        '    Emergency assignments will be acknowledged within 60 minutes.',
+        '  </p>',
+        '  <a href="#services" class="btn btn--outline-dark">',
+        '    <i class="fa-solid fa-list-check" aria-hidden="true"></i>',
+        '    Review Our Services',
+        '  </a>',
+        '</div>'
+      ].join('');
+    }
+  })();
+
+
+  // ============================================================
+  // 6. SMOOTH ANCHOR SCROLL (AUGMENTED)
+  //    The CSS scroll-behavior: smooth handles most cases,
+  //    but this JS augmentation ensures sticky header offset is
+  //    respected on older browsers and for dynamically calculated
+  //    positions. Also fires the mobile drawer close if needed.
+  // ============================================================
+  (function initAnchorScroll() {
+    var NAV_HEIGHT = parseInt(
+      getComputedStyle(document.documentElement).getPropertyValue('--nav-height') || '72',
+      10
+    );
+    var EXTRA_OFFSET = 16; // Breathing room below nav
+
+    document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
+      anchor.addEventListener('click', function (e) {
+        var targetId = anchor.getAttribute('href');
+        if (!targetId || targetId === '#') return;
+
+        var targetEl = document.querySelector(targetId);
+        if (!targetEl) return;
+
+        e.preventDefault();
+
+        var targetTop    = targetEl.getBoundingClientRect().top + window.scrollY;
+        var scrollTarget = targetTop - NAV_HEIGHT - EXTRA_OFFSET;
+
+        window.scrollTo({
+          top: Math.max(0, scrollTarget),
+          behavior: 'smooth'
+        });
+
+        // Update URL hash without triggering a jump
+        if (history.pushState) {
+          history.pushState(null, null, targetId);
+        }
+
+        // If target is the bid form, put focus on the first input
+        if (targetId === '#bid-form') {
+          setTimeout(function () {
+            var firstInput = document.getElementById('field-name');
+            if (firstInput) firstInput.focus();
+          }, 600);
+        }
+      });
+    });
+  })();
+
+
+  // ============================================================
+  // END OF MAIN.JS
+  // ============================================================
+
+});
+
+  </script>
 </body>
 </html>
